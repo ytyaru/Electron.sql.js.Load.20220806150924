@@ -6,6 +6,9 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     console.log(db)
     console.log(db.exec) // main.jsでは関数なのにこちらではundefinedの謎
     //console.log(db.exec(`select * from comments;`)) // Uncaught (in promise) TypeError: db.exec is not a function
-    console.log(await window.myApi.getComments(`src/db/mylog.db`))
+    const rows = await window.myApi.getComments(`src/db/mylog.db`)
+    console.log(rows)
+    const ps = []
+    document.getElementById('show').innerHTML = rows.map(row=>`<p>${row[1]}</p>`).join('')
 });
 
